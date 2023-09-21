@@ -1,7 +1,11 @@
 import { Avatar, Box, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 
-export const Profile: FC = (): ReactElement => {
+import PropTypes from 'prop-types';
+
+export const Profile: FC = (props: any): ReactElement => {
+  //  Destructure props
+  const { name = 'Alex' } = props;
   return (
     <Box
       display="flex"
@@ -15,15 +19,26 @@ export const Profile: FC = (): ReactElement => {
           height: '96px',
           backgroundColor: 'primary.main',
           marginBottom: '16px',
-          src: '/profile-placeholder.png',
+          // src: '/profile-placeholder.png',
         }}
-      ></Avatar>
+      >
+        <Typography variant="h4" color="text.primary">
+          {`${name.substring(0, 1)}`}
+        </Typography>
+      </Avatar>
       <Typography variant="h6" color="text.primary">
-        Welcome
+        {`Welcome, ${name}`}
       </Typography>
       <Typography variant="body1" color="text.primary">
-        Your personal task manager
+        This is your personal tasks manager
       </Typography>
     </Box>
   );
 };
+
+Profile.propTypes = {
+  name: PropTypes.string,
+};
+
+
+
